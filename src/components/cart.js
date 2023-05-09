@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-export default function Cart({ add, sub, number, lastNumber, percentage }) {
-  const [hide, setHide] = useState(false);
+export default function Cart({ add, sub, eye, see, number, lastNumber, percentage }) {
   const [active, setActive] = useState(false)
   return (
     <div className={`w-60 h-60 rounded-xl ${active ? 'bg-red-500' : 'bg-white/30'} border-white border bg-opacity-10 backdrop-blur-lg  p-4`}>
@@ -9,9 +8,9 @@ export default function Cart({ add, sub, number, lastNumber, percentage }) {
         <div>View</div>
         <div>:</div>
       </div>
-      <div className="text-4xl">{hide ? "**.*" : number}m</div>
+      <div className="text-4xl">{see ? "**.*" : number}m</div>
       <div className="flex gap-4">
-        {!hide ? (
+        {!see ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -20,7 +19,7 @@ export default function Cart({ add, sub, number, lastNumber, percentage }) {
             stroke="currentColor"
             className="w-6 h-6 cursor-pointer"
             onClick={() => {
-              setHide(true);
+              eye(!see);
             }}
           >
             <path
@@ -37,7 +36,7 @@ export default function Cart({ add, sub, number, lastNumber, percentage }) {
             strokeWidth={1.5}
             stroke="currentColor"
             className="w-6 h-6 cursor-pointer"
-            onClick={() => setHide(false)}
+            onClick={() => eye(!see)}
           >
             <path
               strokeLinecap="round"
@@ -54,8 +53,8 @@ export default function Cart({ add, sub, number, lastNumber, percentage }) {
 
         <div>
           <div>Last 25 days</div>
-          <div>{hide ? "**.*" : lastNumber}m</div>
-          <div>{hide ? "**.*" : percentage}%</div>
+          <div>{see ? "**.*" : lastNumber}m</div>
+          <div>{see ? "**.*" : percentage}%</div>
         </div>
       </div>
       <button onClick={() => 
