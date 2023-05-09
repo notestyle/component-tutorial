@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export default function Cart({ number, lastNumber, percentage }) {
+export default function Cart({ add, sub, number, lastNumber, percentage }) {
   const [hide, setHide] = useState(false);
-
+  const [active, setActive] = useState(false)
   return (
-    <div className="w-60 h-60 rounded-xl bg-white/30 border-white border bg-opacity-10 backdrop-blur-lg  p-4">
+    <div className={`w-60 h-60 rounded-xl ${active ? 'bg-red-500' : 'bg-white/30'} border-white border bg-opacity-10 backdrop-blur-lg  p-4`}>
       <div className="flex justify-between">
         <div>View</div>
         <div>:</div>
@@ -58,7 +58,17 @@ export default function Cart({ number, lastNumber, percentage }) {
           <div>{hide ? "**.*" : percentage}%</div>
         </div>
       </div>
-      <button className="w-full h-12 flex items-center justify-center rounded border border-white">
+      <button onClick={() => 
+        {
+          if(!active) {
+            add(number)
+            setActive(true)
+          } else {
+            sub(number)
+            setActive(false)
+          }
+        }}
+         className="w-full h-12 flex items-center justify-center rounded border border-white">
         Add
       </button>
     </div>
